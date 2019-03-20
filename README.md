@@ -3,6 +3,10 @@ Make your own tweet bot
 
 _Taught by Albert Li and Theodore Li_
 
+## Link to Slides: https://bit.ly/2HbVg8F
+
+
+
 ### Prerequisites: 
 - Github
 - Python 3.X
