@@ -28,7 +28,21 @@ print(user.name)
 
 
 '''
-After we confirm that it is indeed our acccount, we will now begin making simple
+After we confirm that it is indeed our account, we will now begin making simple
 tweets from the command line. Using the function api.update_status('your_tweet'),
 try making a tweet!
 '''
+
+
+
+'''
+Now let's have our tweetbot print at a set interval of time. Using the "time" library
+try tweeting every 10 seconds for one minute! HINT: you may find
+https://docs.python.org/3/library/time.html very useful!
+'''
+import time
+tweet_count = 0
+while (tweet_count < 6):
+    #Make your tweet
+    #Make the time stall for 10 seconds
+    count += 1
