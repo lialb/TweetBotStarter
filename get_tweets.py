@@ -1,43 +1,33 @@
+import requests
+from requests_oauthlib import OAuth1
 
 import json
-import twitter
-import pprint
 import csv
-import re
-import tweepy
+import pprint
+from markov_generator import generate_tweet
 
-def generate_csv(tweet_handle, writeto):
+pp = pprint.PrettyPrinter()
 
-    with open('api_keys_copy.json') as f:
-        api_keys = json.load(f)
+'''
+After you have finished make_tweets, we will now retrieve tweets from people on
+Twitter. Firstly, try the authentication; it is similar to how we finished make_tweets
+'''
+with open() as :
+    api_keys = json.load()
+# Authentication for Twitter loaded into OAuth1 object
+#Your key, secret, access_token, and access_secret should go here
+auth = OAuth1('Use your api_keys.json')
 
-    api = twitter.Api(consumer_key=api_keys['key'],
-                      consumer_secret=api_keys['secret'],
-                      access_token_key=api_keys['access_token'],
-                      access_token_secret=api_keys['access_secret'])
-
-    all_statuses = []
-    #get statuses, will get 200 at a time, let's go fetch 2000
-    statuses = api.GetUserTimeline(screen_name=tweet_handle, exclude_replies=True, trim_user=True, include_rts=False, count=200)
-    all_statuses.extend(statuses)
-    pprint.pprint(statuses)
-
-    for i in range(0, 9):
-        statuses = api.GetUserTimeline(screen_name=tweet_handle, exclude_replies=True, trim_user=True, include_rts=False, count=200, max_id=statuses[-1].id)
-        # pprint.pprint(statuses)
-        all_statuses.extend(statuses)
-
-    with open(writeto, 'w') as csvfile:
-        fieldnames = ['id', 'text', 'source']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-        writer.writeheader()
-        for status in all_statuses:
-            #sources come in as "<a href=""http://twitter.com"" rel=""nofollow"">Twitter Web Client</a>" so let's just get
-            #the good stuff out
-            cleaner_source = re.search("\>.+\<", status.source).group(0)
-            clean_source = cleaner_source[1: -1]
-            writer.writerow({'id': status.id, 'text': status.text, 'source': clean_source})
-    print("Your status has " + str(len(all_statuses)) + " items ")
-
-generate_csv("horseysurprise", "kenm_tweets.csv")
+'''
+Now we will use the requests library to retrieve users' tweets.
+'''
+def get_tweets(tweet_handle, writeto):
+    url = 'https://api.twitter.com/1.1/statuses/user_timeline.json'
+    params = {
+        'screen_name': tweet_handle,
+        'tweet_mode': 'extended',
+        'count': '200',
+        'include_rts': False,
+        'exclude_replies': True,
+        'trim_user': True,
+    }
