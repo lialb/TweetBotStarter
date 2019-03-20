@@ -19,3 +19,9 @@ First off we're going to need to make a Twitter Developer account to obtain an A
 Now clone the base code from Github. This is the page you're on right now. Click on the green clone and download link. 
 
 This code uses a library called Tweepy, which makes it easier to interact with the twitter API. In order to make this code functional, download tweepy using the command ```pip install tweepy``` in the python terminal.
+
+
+## Starting to Code!
+
+Each class contains some spots we'd like to finish. They are clearly commented, so you don't have to change any of the existing code. 
+For solutions/ a full working Twitter Bot: https://github.com/yiliang6/TweetBotSail
