@@ -12,7 +12,7 @@ This will make the actual tweets from the AI generated tweets. It parses through
 
 def make_tweets(csv_file, num_tweets):
     with open('KEY FILE HERE') as :
-        api_keys = 
+        api_keys =
     auth = OAuth1(ADD AUTHENTICATION HERE)
 
     post_url = 'https://api.twitter.com/1.1/statuses/update.json'
@@ -24,11 +24,12 @@ def make_tweets(csv_file, num_tweets):
     # Hint: You may find https://docs.python.org/3/library/time.html very useful!
     r = requests.post(POST PARAMS HERE)
 
+
+
+#Don't modify anything below!
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-
     parser.add_argument('csv_file', type=str, help='the csv file to make tweets using')
     parser.add_argument('num_tweets', type=int, nargs='?', default=10, help='the number of tweets to make')
     args = parser.parse_args()
     make_tweets(args.csv_file, args.num_tweets)
-

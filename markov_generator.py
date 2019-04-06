@@ -56,16 +56,18 @@ def clean_string(input):
 '''
 Uses pandas to read the csv file for tweet text.
 @param csv: the csv filename as a string
-@return a data frame object 
+@return a data frame object
 '''
 def get_tweets_csv(csv):
     df = pd.read_csv(csv)
     return df['text'].tolist()
 
 
+
+
+#Don't modify anything below!
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('csv_file', type=str, help='the csv file to make tweets using')
     args = parser.parse_args()
     print(generate_tweet(args.csv_file))
-
