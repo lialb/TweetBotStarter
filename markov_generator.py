@@ -26,22 +26,18 @@ def generate_tweet(csv):
 
 '''
  Returns a dictionary with word frequencies associated with each word
+ The dictionary word_chain is going to have a word as a key, and a list of all the words that follow it as the value
+ The list begin_words just has every starting word from library
  @param library: an array of strings to parse from
  @return a tuple containing beginning words, word-frequency dictionary
 '''
 def get_markov_dict(library):
+    # TODO: COMPLETE MARKOV CHAINS
     word_chain = {}
     begin_words = []
-    for sentence in library:
-        last_word = ''
-        clean_sentence = clean_string(sentence)
-        begin_words.append(clean_sentence.split(' ')[0])
-        for word in clean_sentence.split(' '):
-            if word not in word_chain:
-                word_chain[word] = []
-            if last_word != '':
-                word_chain[last_word].append(word)
-            last_word = word
+    # Iterate through every sentence in the library
+    # Remember to clean the string using clean_string()!
+        # Then iterate through every word in the sentence and add it to the dictionary and list
     return begin_words, word_chain
 
 '''
@@ -58,7 +54,7 @@ def clean_string(input):
     return input;
 
 '''
-Uses pandas to read the csv file for tweet text
+Uses pandas to read the csv file for tweet text.
 @param csv: the csv filename as a string
 @return a data frame object 
 '''
