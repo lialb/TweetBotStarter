@@ -38,18 +38,6 @@ def get_markov_dict(library):
     # Iterate through every sentence in the library
     # Remember to clean the string using clean_string()!
         # Then iterate through every word in the sentence and add it to the dictionary and list
-    for tweet in library:
-        prev_word = ''
-        clean_tweet = clean_string(tweet)
-
-        begin_words.append(clean_tweet.split(' ')[0])
-        
-        for word in clean_tweet.split(' '):
-            if prev_word is not '':
-                if prev_word not in word_chain:
-                    word_chain[prev_word] = []
-                word_chain[prev_word].append(word)
-            
     return begin_words, word_chain
 
 '''
