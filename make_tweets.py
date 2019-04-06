@@ -1,48 +1,33 @@
-'''
-This class will be used to make the tweets themselves. We will be using the
-tweepy and json libraryself.
-This will make the actual tweets from the AI generated tweets. It parses
-through the json containing the keys and access tokens.
-'''
-import tweepy
 import json
+import requests
+import argparse
+import time
+from requests_oauthlib import OAuth1
 from markov_generator import generate_tweet
 
-#TODO: Get your authentication for your twitter account using the JSON with your API keys
-
-with open('YOUR_FILE_HERE') as :
-    api_keys =
-
-auth = tweepy.OAuthHandler('YOUR KEYS AND SECRETS SHOULD GO HERE')
-auth.set_access_token('What should go here?')
-
-api = tweepy.API('your authentication thingy should go here.')
-
-
 '''
-Now we have finished the authentication for your twitter account. We will
-see if we have the correct account using the following print statement.
-'''
-user = api.me()
-print(user.name)
-
-
-'''
-After we confirm that it is indeed our account, we will now begin making simple
-tweets from the command line. Using the function api.update_status('your_tweet'),
-try making a tweet!
+This class will be used to make the tweets themselves. We will be using the tweepy and json library.
+This will make the actual tweets from the AI generated tweets. It parses through the json containing the keys and access tokens.
 '''
 
+def make_tweets(csv_file, num_tweets):
+    with open('KEY FILE HERE') as :
+        api_keys = 
+    auth = OAuth1()
 
+    post_url = 'https://api.twitter.com/1.1/statuses/update.json'
+    post_params = {
+        'status': generate_tweet(csv_file)
+    }
 
-'''
-Now let's have our tweetbot print at a set interval of time. Using the "time" library
-try tweeting every 10 seconds for one minute! HINT: you may find
-https://docs.python.org/3/library/time.html very useful!
-'''
-import time
-tweet_count = 0
-while (tweet_count < 6):
-    #Make your tweet
-    #Make the time stall for 10 seconds
-    count += 1
+    # TODO: After we get posting working, try tweeting num_tweets tweets every 10 seconds!
+    # Hint: You may find https://docs.python.org/3/library/time.html very useful!
+    r = requests.post(POST PARAMS HERE)
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('csv_file', type=str, help='the csv file to make tweets using')
+    parser.add_argument('num_tweets', type=int, nargs='?', default=10, help='the number of tweets to make')
+    args = parser.parse_args()
+    make_tweets(args.csv_file, args.num_tweets)
+

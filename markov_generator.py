@@ -6,6 +6,25 @@ import argparse
 TWEET_LENGTH = 280
 
 '''
+Main function, takes in a csv file and generates tweet text based on that data
+@param csv: the csv file name to pull tweets from
+@return the generated markov chain string
+'''
+def generate_tweet(csv):
+    begin_words, word_chain = get_markov_dict(get_tweets_csv(csv))
+    word = random.choice(begin_words)
+    ret_str = ''
+    for i in range(100):
+        if (len(ret_str) + len(word + ' ')) > TWEET_LENGTH:
+            break
+        ret_str += word + ' '
+        clean_word = clean_string(word)
+        if (word_chain[clean_word] == []):
+            break
+        word = random.choice(word_chain[clean_word])
+    return ret_str
+
+'''
  Returns a dictionary with word frequencies associated with each word
  @param library: an array of strings to parse from
  @return a tuple containing beginning words, word-frequency dictionary
@@ -47,24 +66,6 @@ def get_tweets_csv(csv):
     df = pd.read_csv(csv)
     return df['text'].tolist()
 
-'''
-Main function, takes in a csv file and generates tweet text based on that data
-@param csv: the csv file name to pull tweets from
-@return the generated markov chain string
-'''
-def generate_tweet(csv):
-    begin_words, word_chain = get_markov_dict(get_tweets_csv(csv))
-    word = random.choice(begin_words)
-    ret_str = ''
-    for i in range(100):
-        if (len(ret_str) + len(word + ' ')) > TWEET_LENGTH:
-            break
-        ret_str += word + ' '
-        clean_word = clean_string(word)
-        if (word_chain[clean_word] == []):
-            break
-        word = random.choice(word_chain[clean_word])
-    return ret_str
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
