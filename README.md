@@ -18,7 +18,7 @@ First off we're going to need to make a Twitter Developer account to obtain an A
 
 Now clone the base code from Github. This is the page you're on right now. Click on the green clone and download link. 
 
-This code uses a library called Tweepy, which makes it easier to interact with the twitter API. In order to make this code functional, download tweepy using the command ```pip install tweepy``` in the python terminal.
+This code uses the libraries requests and pandas, which makes it easier to make HTTP requests and to read/write csv files. In order to make this code functional, download tweepy using the command ```pip install requests``` and then ```pip install pandas``` in the terminal.
 
 
 ## Starting to Code!
